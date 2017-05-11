@@ -1,0 +1,24 @@
+{
+  "name": "cgi-elevate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "hbs": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theRoughCode/CGI-Elevate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theRoughCode/CGI-Elevate/issues"
+  },
+  "homepage": "https://github.com/theRoughCode/CGI-Elevate#readme"
+}
