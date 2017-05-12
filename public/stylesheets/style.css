@@ -1,0 +1,16 @@
+body {
+  background-color: #89b6ff;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-form div {
+  margin-bottom: 10px;
+}
+
+.hide {
+  display: none;
+}

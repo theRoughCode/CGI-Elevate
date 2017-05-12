@@ -1,8 +1,44 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <title>Flekx</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1>Welcome to Flekx!</h1>
+    <h2>Upload item</h2>
+    <form class="upload-form" action="/submit" method="POST">
+      <div>
+        <label for="name">Item Name:</label>
+        <input type="text" name="name" />
+      </div>
+      <div>
+        <label for="desc">Item Description:</label>
+        <input type="text" name="desc" />
+      </div>
+      <div>
+        <label for="qty">Quantity:</label>
+        <input type="number" name="qty" />
+      </div><div>
+        <label for="price">Price:</label>
+        <input type="number" name="price" step=".01" />
+      </div>
+      <div>
+        <label for="bid">Put up for bid? </label><br />
+        <input type="radio" name="bid" value="yes" /> Yes<br />
+        <input type="radio" name="bid" value="no" /> No
+      </div>
+      <div class="hide">
+        <label for="duration">Duration of bid:</label>
+        <select name="duration">
+          <option value="1 hour">1 hour</option>
+          <option value="1 day">1 day</option>
+          <option value="3 days">3 days</option>
+          <option value="1 week">1 week</option>
+        </select>
+      </div>
+      <input type="submit" value="Submit" />
+    </form>
   </body>
 </html>
