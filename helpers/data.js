@@ -42,7 +42,7 @@ function addItem(data, callback) {
   // Get key
   var newPostRef = itemsRef.push();
   newPostRef.set(data);
-  return callback(data);
+  return callback(newPostRef.key);
 }
 
 // RETRIEVE DATA GIVEN UNIQUE ID.  RETURNS NULL IF DOESN"T EXIST

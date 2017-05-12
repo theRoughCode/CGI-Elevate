@@ -18,9 +18,9 @@ routes.post('/submit', function(req, res){
     if(files.pic.type.includes('image/')) {
       data.uploadImage(files.pic, id => {
         fields["img_id"] = id;
-        data.addItem(fields, e => res.send(e));
+        data.addItem(fields, id => res.redirect(`/retrieve/${id}`));
       });
-    } else data.addItem(fields, e => res.send(e));
+    } else data.addItem(fields, e => res.redirect(`/retrieve/${id}`));
   });
 });
 
