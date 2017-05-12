@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 const path = require('path');
 const routes = require('./routes');
-
+console.log(process.env.FIREBASE_ID);
 //  Connect all our routes to our application
 app.use('/', routes);
 
