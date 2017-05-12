@@ -11,6 +11,9 @@ var db = admin.database();
 var ref = db.ref('db');
 var itemsRef = ref.child('items');
 
+//var storageRef = admin.storage().ref();
+//var imageRef = storageRef.child('images');
+
 /*
 UPLOAD ITEM TO DATABASE
 item = {
@@ -24,12 +27,12 @@ item = {
   date_uploaded
 }
 */
-function addItem(item, callback) {
+function addItem(data, callback) {
   // Get key
   var newPostRef = itemsRef.push();
-  console.log(newPostRef.key);
-  newPostRef.set(item);
-  return callback(newPostRef.key);
+  newPostRef.set(data);
+  console.log(data.pic);
+  return callback(data);
 }
 
 // RETRIEVE DATA GIVEN UNIQUE ID.  RETURNS NULL IF DOESN"T EXIST
@@ -38,7 +41,20 @@ function retrieveItem (key, callback) {
   retrieveRef.on('value', data => callback(data.val()));
 }
 
+// UPDATE ITEM
+function updateItem (key, data, callback) {
+  var updates = {};
+  updates[`/${key}`] = data;
+  callback(itemsRef.update(updates));
+}
+
+// UPLOAD IMAGE
+function uploadImage(key, img, callback) {
+
+}
+
 module.exports = {
   addItem,
-  retrieveItem
+  retrieveItem,
+  updateItem
 }
