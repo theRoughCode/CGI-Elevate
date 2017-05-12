@@ -30,7 +30,6 @@ routes.get('/retrieve/:id', function(req, res) {
     res.contentType(img.contentType);
     res.end(img.data, 'binary');
   });
-  //data.retrieveItem(req.params.id, data => res.send(data));
 });
 
 // UPDATE ITEM
