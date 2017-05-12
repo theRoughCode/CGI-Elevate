@@ -7,6 +7,7 @@ require('dotenv').config();
 
 var serviceAccount = require('../public/resources/cgi-elevate-firebase-adminsdk-99kk1-817819ff25.json');
 
+FIREBASE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDyHZ0gHSktosB2\n1i4gRqg6ANzzqGp4L/YeuQjpX2TeKHmAmGroEtaJSUhX/QGn53SJGMOYX40uLGNi\nhwi8I+/p/0oGf9qLk/xzUz0gisI3xAYmxevt7I5l+kKB6qNEOF6hwY72bZtQGQNV\nQwRUboMsJZtPNVwIeIMyUuj3lcc1u93+afNWUJS2ZNuIL7Mv+m00PtCFvvK7NOjH\nktJOQY3ibus2sDzjygA9njrVIwotsBqki7twV4dS6esEgbxzttA6GPMYlyDXOAjZ\no8UpQuHn3TU//AdWcg1egBLImOU6gwYNIEuhbnIf7fLmHZOoviy1pqT46MFfIYeX\n+wGXV5wLAgMBAAECggEAI9iclc+bdCU/h5ioVaEAcS4FiJGrycWYE+5jUmIMRhQK\nAS8PzPJVDxhpfJV59EkBaPbgpqOm/GoYANNrSKetcqCYbiPp0HaFjvGJAFNq8+Sy\n4HS3PI+keZa22BNMPuJ1qE9HAlcyAobhhnMYpgOCqjubJfwJdzuYeQ/rbBSh3ON8\n/xpXLYfoHsjG3biPQsxk7XMEA+GlgspxZuTp9sY7nZdo/dTVDV8ok+OsYUoT6oNd\n4bY37sjhV40viX+lw4S/U4H2keLaGEXqqpkpg30J7gSeSloFe5KgViNljXMUMbCZ\nfitfwChrOmsbCN/piAusOte7NauSPSs2dSpcy/nJgQKBgQD5reL2j3ccPeEM6+Yb\nUxa9IrE+P2OINAd6kOw0sm9e/Xjd9V7tJB5LOgK2+q8CiFgaBfVFC18+KfQRvYhP\naoMTHH9h+1Wv7I3F2rxlMJLAIukFUCgkveMrIKkJK8Aeeu/SbwXHkIOO7LamaKSX\ncTjwMaCLwi7NAdWRDxq8cZQ9SwKBgQD4PrWgTj9zzxvJKY91GzCurKMkEsJ8iVeW\nH3pLgtthefLYDzhGzJ6YhL+giIUlu+Tu4zw2rY5aMUHbhzanwu3aSgWvTRP0zhCh\nswCzP01kurqcMIMTmdkaax8L6YA3To2afknZo/Ll3n1PE4R6TiA00xHxfvGt2ROe\nFj58plCkQQKBgDJM0MOhZXqgEL28rI/mrlcOLS0AMjoXWUZc+ekn5X36jKYSr7wQ\nobXACxn36NgWxcEAYEg3oUlxxETqrRJqv9tSy2re6oVVn74zce7k2TuyDMXQPzYf\ntytSGhvJ35uEYto/Gaf5ujdKAwYFYNtNqQ3iwZhGV41fiDoAE//Q1e9/AoGALdY+\naSQpmTOjuMggwgnMOmSMFwwTtzUQ5BpZ1XmLEnuW+IgO5xu/KQBR9c1fcHE6O1Xf\n92SihUrVEzjrQZy/mG/UjuLXjXtDHOhVd8N3geLstAxNF6Bvsu4WpHdwAkZR5TXu\nYu5f2kvzrVc4PfERB0/13zaGX4hWk/kdfpyjBUECgYAY6Oh71CGP1aTXh5aQOV4f\noopQ/pxR6MolS+HCL06jnglVJKdMgiQqw7PReku6SMYxym++GbAtTCdWLhgfa+kW\nOcu8YfbHYWaT4oEnJaP8XECEzpBJ3uIYdLjNtbchSP8HDamsgMOcrfXkfecx426x\nD0YLVEnEalaNCgQ88sXFVA==\n-----END PRIVATE KEY-----\n"
 FIREBASE_EMAIL="firebase-adminsdk-99kk1@cgi-elevate.iam.gserviceaccount.com"
 FIREBASE_CLIENT_ID="118370635715292571795",
 FIREBASE_AUTH_URI="https://accounts.google.com/o/oauth2/auth",
@@ -16,7 +17,7 @@ FIREBASE_CLIENT_CERT="https://www.googleapis.com/robot/v1/metadata/x509/firebase
 MONGOOSE="mongodb://admin:ICe2SwRQyADblIOqV8yf@ds137261.mlab.com:37261/cgi"
 
 serviceAccount["private_key_id"] = process.env.FIREBASE_ID;
-serviceAccount["private_key"] = process.env.FIREBASE_KEY;
+serviceAccount["private_key"] = FIREBASE_KEY || process.env.FIREBASE_KEY;
 serviceAccount["client_email"] = FIREBASE_EMAIL || process.env.FIREBASE_EMAIL;
 serviceAccount["client_id"] = FIREBASE_CLIENT_ID || process.env.FIREBASE_CLIENT_ID;
 serviceAccount["auth_uri"] = FIREBASE_AUTH_URI || process.env.FIREBASE_AUTH_URI;
