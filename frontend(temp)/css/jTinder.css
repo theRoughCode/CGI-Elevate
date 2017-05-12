@@ -11,8 +11,10 @@ body {
 
 /* Wrapper with padding */
 .wrap  {
-    height: 300px;
-    padding: 5%;
+    height: 350px;
+    width: 50%;
+    margin: auto;
+    padding: 2%;
 }
 
 #tinderslide {
@@ -63,12 +65,16 @@ body {
     font-size: 30px;
     text-align: center;
     position: absolute;
+    font-family: cursive;
     top: 40%;
     left: 0;
     width: 100%;
     text-shadow: -1px -1px 0 rgba(0, 0, 0, .2);
 }
 
+.bottomfont {
+  font-family: cursive;
+}
 /* Image rotation */
 #tinderslide li.pane1 {
     -webkit-transform: rotate(-1deg);
