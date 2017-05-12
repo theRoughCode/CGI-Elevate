@@ -12,8 +12,11 @@ routes.use(bodyParser.json());
 routes.use(bodyParser.urlencoded({ extended: true }));
 routes.use(upload.array());
 routes.post('/submit', function(req, res){
-  //res.send(req.body);
   data.addItem(req.body, e => res.send(e));
 });
+
+routes.get('/retrieve/:id', function(req, res) {
+  data.retrieveItem(req.params.id, data => res.send(data));
+})
 
 module.exports = routes;

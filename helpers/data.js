@@ -26,16 +26,19 @@ item = {
 */
 function addItem(item, callback) {
   // Get key
-  var key = itemsRef.push().key;
+  var newPostRef = itemsRef.push();
+  console.log(newPostRef.key);
+  newPostRef.set(item);
+  return callback(newPostRef.key);
+}
 
-  console.log(key);
-
-  var updates = {};
-  updates[`/items/${key}`] = item;
-
-  return callback(ref.update(updates));
+// RETRIEVE DATA GIVEN UNIQUE ID.  RETURNS NULL IF DOESN"T EXIST
+function retrieveItem (key, callback) {
+  var retrieveRef = itemsRef.child(key);
+  retrieveRef.on('value', data => callback(data.val()));
 }
 
 module.exports = {
-  addItem
+  addItem,
+  retrieveItem
 }
