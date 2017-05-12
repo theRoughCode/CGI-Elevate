@@ -19,3 +19,11 @@ body {
   margin: auto;
   margin-left: 0;
 }
+
+.img_div {
+  width: 100px;
+}
+
+img {
+  max-width: 100%;
+}
