@@ -63,12 +63,25 @@ function deleteItem (key, callback) {
   var itemRef = itemsRef.child(key);
   itemRef.on('value', data => {
     if (data.val() == null) return callback('Key doesnt exist');
+    else {
+      var img_id = data.val().img_id;
 
-    var img_id = data.val().img_id;
-    if(img_id) deleteImage(img_id);
+      new Promise((resolve, reject) => {
+        if(img_id) {
+          deleteImage(img_id, err => {
+            if(err) reject();
+            resolve();
+          });
+        } else resolve();
+      }).then(() => {
+        itemRef.remove();
+        callback(`${itemRef} removed.`);
+      }, () => {
+          itemRef.remove();
+          callback("Something happened");
+        });
+    }
   });
-  itemRef.remove();
-  callback(`${itemRef} removed.`);
 }
 
 // RETRIEVE ALL ITEMS
@@ -100,8 +113,22 @@ function getImage(id, callback) {
 }
 
 // DELETE IMAGE
-function deleteImage (id) {
-  Image.find({ id: id }).remove();
+function deleteImage (id, callback) {
+  Image.find({ _id: id }, (err, data) => {
+    if (err) {
+      console.error("Image not found.");
+      return callback(1);
+    }
+    if(data.length === 0) return callback(1);
+    data[0].remove((err, res) => {
+      if (err) {
+        console.error("Error deleting image.");
+        return callback(1);
+      }
+      console.log("Successfully deleted image.");
+      callback(0);
+    });
+  });
 }
 
 module.exports = {
