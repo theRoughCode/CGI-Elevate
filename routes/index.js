@@ -32,6 +32,7 @@ routes.post('/submit', function(req, res){
 // RETRIEVE ITEM
 routes.get('/retrieve/:id', function(req, res) {
   data.retrieveItem(req.params.id, field => {
+    console.log(field);
     data.getImage(field.img_id, img => {
       if(field.bid === 'no') field.duration = null;
       res.render('display', {
@@ -73,8 +74,7 @@ routes.get('/list', function (req, res) {
 
 routes.get('/delete/:id', function (req, res) {
   data.deleteItem(req.params.id, err => {
-    console.log(err);
-    res.redirect('/list');
+    res.render('list');
   });
 })
 

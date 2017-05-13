@@ -67,22 +67,10 @@ function deleteItem (key, callback) {
   itemRef.on('value', data => {
     if (data.val() != null) {
       var img_id = data.val().img_id;
-
-      new Promise((resolve, reject) => {
-        if(img_id) {
-          deleteImage(img_id, err => {
-            if(err) reject();
-            resolve();
-          });
-        } else resolve();
-      }).then(() => {
-        itemRef.remove();
-        callback(`${itemRef} removed.`);
-      }, () => {
-        itemRef.remove();
-        callback("Something happened");
-      });
-    } else callback('Key doesnt exist');
+      if(img_id) deleteImage(img_id, err => {});
+      itemRef.remove();
+      callback(`${key} removed.`);
+    } else callback('Item not found.');
   });
 }
 
@@ -116,6 +104,7 @@ function getImage(id, callback) {
 
 // DELETE IMAGE
 function deleteImage (id, callback) {
+  return callback();
   Image.find({ _id: id }, (err, data) => {
     if (err) {
       console.error("Image not found.");

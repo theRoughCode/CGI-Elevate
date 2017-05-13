@@ -15,10 +15,16 @@
           </div>
           <div class="item-buttons">
             <button type="button" onclick="location.href='/retrieve/{{ this.id }}';">View</button>
-            <button type="button" onclick="location.href='/delete/{{ this.id }}';">Remove</button>
+            <button type="button" onclick="removeFn('{{ this.id }}', this)">Remove</button>
           </div>
         </div>
       {{/each}}
     </div>
+    <script>
+      function removeFn (id, e) {
+        console.log(e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode));
+        location.href = `/delete/${id}`;
+      }
+    </script>
   </body>
 </html>
