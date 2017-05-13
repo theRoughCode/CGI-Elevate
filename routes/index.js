@@ -54,6 +54,28 @@ routes.get('/img/:id', function(req, res) {
   });
 });
 
+// DISPLAY ALL ITEMS
+routes.get('/list', function (req, res) {
+  data.getAll(items => {
+    var item_arr = [];
+    var i = 0;
+    for (var key in items) {
+      var item = items[key];
+      item["id"] = key;
+      item_arr.push(item);
+      i++;
+    };
+    res.render('list', { items: item_arr });
+  });
+})
+
+routes.get('/delete/:id', function (req, res) {
+  data.deleteItem(req.params.id, err => {
+    console.log(err);
+    res.redirect('/list');
+  });
+})
+
 // UPDATE ITEM
 routes.post('/update/:id', function(req, res) {
   data.updateItem(req.params.id, req.body, data => res.send(data));

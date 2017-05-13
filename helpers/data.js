@@ -58,7 +58,23 @@ function updateItem (key, data, callback) {
   callback(itemsRef.update(updates));
 }
 
+// DELETE ITEM
+function deleteItem (key, callback) {
+  var itemRef = itemsRef.child(key);
+  itemRef.on('value', data => {
+    if (data.val() == null) return callback('Key doesnt exist');
 
+    var img_id = data.val().img_id;
+    if(img_id) deleteImage(img_id);
+  });
+  itemRef.remove();
+  callback(`${itemRef} removed.`);
+}
+
+// RETRIEVE ALL ITEMS
+function getAll (callback) {
+  itemsRef.on('value', data => callback(data.val()));
+}
 
 //  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Storage  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -83,10 +99,17 @@ function getImage(id, callback) {
   Image.findById(id, (err, img) => callback(img.img));
 }
 
+// DELETE IMAGE
+function deleteImage (id) {
+  Image.find({ id: id }).remove();
+}
+
 module.exports = {
   addItem,
   retrieveItem,
   updateItem,
   uploadImage,
-  getImage
+  getImage,
+  getAll,
+  deleteItem
 }
