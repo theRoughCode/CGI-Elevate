@@ -96,17 +96,6 @@ routes.get('/test', function (req, res) {
         callback();
       });
     }, () => res.render('test', { items: item_arr }));
-    /*
-    for (var key in items) {
-      data.getImage(items[key].img_id, img => {
-        var item = items[key];
-        item["img"] = img;
-        item_arr.push(item);
-        i++;
-      });
-    }
-    console.log(item_arr);
-    res.render('test', { items: item_arr });*/
   });
 })
 
