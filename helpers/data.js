@@ -48,7 +48,10 @@ function addItem(data, callback) {
 // RETRIEVE DATA GIVEN UNIQUE ID.  RETURNS NULL IF DOESN"T EXIST
 function retrieveItem (key, callback) {
   var retrieveRef = itemsRef.child(key);
-  retrieveRef.on('value', data => callback(data.val()));
+  retrieveRef.on('value', data => {
+    console.log(data.val());
+    callback(data.val());
+  });
 }
 
 // UPDATE ITEM
@@ -62,8 +65,7 @@ function updateItem (key, data, callback) {
 function deleteItem (key, callback) {
   var itemRef = itemsRef.child(key);
   itemRef.on('value', data => {
-    if (data.val() == null) return callback('Key doesnt exist');
-    else {
+    if (data.val() != null) {
       var img_id = data.val().img_id;
 
       new Promise((resolve, reject) => {
@@ -77,10 +79,10 @@ function deleteItem (key, callback) {
         itemRef.remove();
         callback(`${itemRef} removed.`);
       }, () => {
-          itemRef.remove();
-          callback("Something happened");
-        });
-    }
+        itemRef.remove();
+        callback("Something happened");
+      });
+    } else callback('Key doesnt exist');
   });
 }
 
