@@ -22,7 +22,7 @@ routes.post('/submit', function(req, res){
       };
     data.uploadImage(files.pic, id => {
       fields["img_id"] = id;
-      data.addItem(fields, id => res.redirect(`/retrieve/${id}`));
+      data.addItem(fields, id => res.redirect(`/list`));
     });
   });
 });

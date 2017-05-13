@@ -14,7 +14,7 @@
             <p>{{ this.name }}: {{ this.desc }}</p>
           </div>
           <div class="item-buttons">
-            <button type="button">View</button>
+            <button type="button" onclick="location.href='/retrieve/{{ this.id }}';">View</button>
             <button type="button" onclick="location.href='/delete/{{ this.id }}';">Remove</button>
           </div>
         </div>
