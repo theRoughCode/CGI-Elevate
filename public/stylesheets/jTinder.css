@@ -95,7 +95,7 @@ body {
 /* Like & dislike badge images */
 #tinderslide .like,
 #tinderslide .dislike {
-    background: url("../img/liked.png") no-repeat scroll 0 0;
+    background: url("../images/liked.png") no-repeat scroll 0 0;
     opacity: 0;
     height: 80px;
     position: absolute;
@@ -116,7 +116,7 @@ body {
 #tinderslide .dislike {
     right: 45px;
     left: auto;
-    background: url("../img/nope.png") no-repeat scroll 0 0;
+    background: url("../images/nope.png") no-repeat scroll 0 0;
 }
 
 /* Image container */
@@ -158,15 +158,15 @@ body {
 }
 
 .actions a.dislike i {
-    background: url("../img/dislike_button.png") no-repeat scroll center center;
+    background: url("../images/dislike_button.png") no-repeat scroll center center;
 }
 
 .actions a.like i {
-    background: url("../img/like_button.png") no-repeat scroll center center;
+    background: url("../images/like_button.png") no-repeat scroll center center;
 }
 
 .actions a.cart i {
-    background: url("../img/cart.png") no-repeat scroll center center;
+    background: url("../images/cart.png") no-repeat scroll center center;
 }
 
 .actions a {
@@ -196,26 +196,9 @@ body {
   background: #f5f5f5;
 }
 
-/* jTinder images */
-#tinderslide .pane5 .img {
-    background: url("../img/pane/pane5.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane4 .img {
-    background: url("../img/pane/pane4.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane3 .img {
-    background: url("../img/pane/pane3.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane2 .img {
-    background: url("../img/pane/pane2.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane1 .img {
-    background: url("../img/pane/pane1.jpg") no-repeat scroll center center;
-    background-size: cover;
+#tinderslide .img img {
+  max-height: 100%;
+  max-width: 100%;
 }
 
 /* jTinder status text */

@@ -2,6 +2,7 @@ const routes = require('express').Router();
 const data = require('../helpers/data');
 const formidable = require('formidable');
 const fs = require('fs');
+const async = require('async');
 
 routes.get('/', function(req, res){
   res.render('index');
@@ -80,5 +81,32 @@ routes.get('/delete/:id', function (req, res) {
 routes.post('/update/:id', function(req, res) {
   data.updateItem(req.params.id, req.body, data => res.send(data));
 });
+
+routes.get('/test', function (req, res) {
+  data.getAll(items => {
+    var item_arr = [];
+    var i = 0;
+
+    async.each(items, (item, callback) => {
+      data.getImage(item.img_id, img => {
+        item["img"] = `data:${img.contentType};base64,${new Buffer(img.data).toString('base64')}`;
+        item_arr.push(item);
+        i++;
+        callback();
+      });
+    }, () => res.render('test', { items: item_arr }));
+    /*
+    for (var key in items) {
+      data.getImage(items[key].img_id, img => {
+        var item = items[key];
+        item["img"] = img;
+        item_arr.push(item);
+        i++;
+      });
+    }
+    console.log(item_arr);
+    res.render('test', { items: item_arr });*/
+  });
+})
 
 module.exports = routes;
