@@ -6,51 +6,62 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1>Welcome to Flekx!</h1>
-    <h2>Upload item</h2>
-    <form class="upload-form" action="/submit" method="POST" enctype="multipart/form-data">
-      <div>
-        <label for="name">Item Name:</label>
-        <input type="text" name="name" />
+    <div class="index">
+      <h1>Welcome to Flekx!</h1>
+      <h2>Upload item</h2>
+      <form class="upload-form" action="/submit" method="POST" enctype="multipart/form-data">
+        <div class="section"><span>1</span>Name &amp; Description</div>
+        <div class="inner-wrap">
+          <label for="name">Item Name:</label>
+          <input type="text" name="name" />
+          <br />
+          <label for="desc">Item Description:</label>
+          <input type="text" name="desc" />
+        </div>
+
+        <div class="section"><span>2</span>Quantity &amp; Category</div>
+        <div class="inner-wrap">
+          <label for="qty">Quantity:</label>
+          <input type="number" name="qty" />
+          <br />
+          <br />
+          <label for="category">Category:</label>
+          <input type="radio" name="category" value="furniture" id="cat-furniture" /> Furniture<br />
+          <input type="radio" name="category" value="renovation materials" id="cat-reno" /> Renovation Materials<br />
+          <input type="radio" name="category" value="appliances" id="cat-apps" /> Appliances<br />
+          <input type="radio" name="category" value="home accessories" id="cat-home" /> Home Accessories<br />
+        </div>
+
+        <div class="section"><span>3</span>Bid &amp; Price</div>
+          <div class="inner-wrap">
+          <label for="bid">Put up for bid? </label>
+          <input type="radio" name="bid" value="yes" id="bid-yes" /> Yes<br />
+          <input type="radio" name="bid" value="no" id="bid-no" /> No
+          <br />
+          <br />
+          <label for="price" id="price">Price:</label>
+          <input type="number" name="price" step=".01" />
+        <div class="hide" id="duration">
+          <br />
+          <label for="duration">Duration of bid:</label>
+          <select name="duration">
+            <option value="1 hour">1 hour</option>
+            <option value="1 day">1 day</option>
+            <option value="3 days">3 days</option>
+            <option value="1 week">1 week</option>
+          </select>
+          <br />
+        </div>
       </div>
-      <div>
-        <label for="desc">Item Description:</label>
-        <input type="text" name="desc" />
-      </div>
-      <div>
-        <label for="qty">Quantity:</label>
-        <input type="number" name="qty" />
-      </div>
-      <div>
-        <label for="category">Category:</label><br />
-        <input type="radio" name="category" value="furniture" id="cat-furniture" /> Furniture<br />
-        <input type="radio" name="category" value="renovation materials" id="cat-reno" /> Renovation Materials<br />
-        <input type="radio" name="category" value="appliances" id="cat-apps" /> Appliances<br />
-        <input type="radio" name="category" value="home accessories" id="cat-home" /> Home Accessories<br />
-      </div>
-      <div>
-        <label for="bid">Put up for bid? </label><br />
-        <input type="radio" name="bid" value="yes" id="bid-yes" /> Yes<br />
-        <input type="radio" name="bid" value="no" id="bid-no" /> No
-      </div>
-      <div>
-        <label for="price" id="price">Price:</label>
-        <input type="number" name="price" step=".01" />
-      </div>
-      <div class="hide" id="duration">
-        <label for="duration">Duration of bid:</label>
-        <select name="duration">
-          <option value="1 hour">1 hour</option>
-          <option value="1 day">1 day</option>
-          <option value="3 days">3 days</option>
-          <option value="1 week">1 week</option>
-        </select>
-      </div>
-      <div class="picture">
-        <input type="file" name="pic" accept="image/*" />
-      </div>
-      <input type="submit" value="Submit" id="submit" />
-    </form>
+
+        <div class="section"><span>4</span>Picture</div>
+
+        <div class="inner-wrap" "picture" >
+          <input type="file" name="pic" accept="image/*" />
+        </div>
+        <input type="submit" value="Submit" id="submit" />
+      </form>
+    </div>
     <script>
       const yesBid = document.querySelector('#bid-yes');
       const noBid = document.querySelector('#bid-no');
