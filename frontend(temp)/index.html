@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Shopping</title>
     <link rel="stylesheet" type="text/css" href="css/jTinder.css">
+
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+
 </head>
 <body>
 	<div id="biggerWrap">
@@ -16,33 +27,38 @@
 				<ul>
 					<li class="product pane1">
 						<div class="img"></div>
-						<div class="bottomfont">Miami Beach</div>
+						<div class="bottomfont" id="title1">Brown Dresser</div>
 						<div class="like"></div>
 						<div class="dislike"></div>
+						<div id="description1" style="display:none">heavy wood dresser, well maintained</div>
 					</li>
 					<li class="product pane2">
 						<div class="img"></div>
-						<div class="bottomfont">San Francisco</div>
+						<div class="bottomfont" id="title2">Cola Lamp</div>
 						<div class="like"></div>
 						<div class="dislike"></div>
+						<div id="description2" style="display:none">handmade, environment friendly, great for decoration</div>
 					</li>
 					<li class="product pane3">
 						<div class="img"></div>
-						<div class="bottomfont">Chicago</div>
+						<div class="bottomfont" id="title3">Microwave</div>
 						<div class="like"></div>
 						<div class="dislike"></div>
+						<div id="description3" style="display:none">2 years old, mid size, still working well</div>
 					</li>
 					<li class="product pane4">
 						<div class="img"></div>
-						<div class="bottomfont">New York</div>
+						<div class="bottomfont" id="title4">Outdated Elsa costume</div>
 						<div class="like"></div>
 						<div class="dislike"></div>
+						<div id="description4" style="display:none">Bought last year, only wore once</div>
 					</li>
 					<li class="product pane5">
 						<div class="img"></div>
-						<div class="bottomfont">Beach</div>
+						<div class="bottomfont" id="title5">Oversize Teddy Bear</div>
 						<div class="like"></div>
 						<div class="dislike"></div>
+						<div id="description5" style="display:none">friendly, huggable, some dust but can be cleaned easily</div>
 					</li>
 				</ul>
 			</div>
@@ -60,20 +76,183 @@
 		</div>
 
 		<!-- jTinder status text  -->
-		<div id="status"></div>
+		<div id="status" style="display:none"></div>
 		<div id="likedList" style="display:none"></div>
 		<div id="dislikedList" style="display:none"></div>
+		<div id="category1" style="display:none">1 5</div> <!--category1 = furniture-->
+		<div id="category2" style="display:none">2</div> <!--category2 = toy-->
+		<div id="category3" style="display:none">3</div> <!--category3 = food-->
+		<div id="category4" style="display:none">4</div> <!--category4 = clothing-->
 	</div>
 
 	<div id="checkoutPage" style="display:none">
-		Liked Display
-		<ul id="likedDisplay">
-		</ul>
-		Disliked Display
-		<ul id="dislikedDisplay">
-		</ul>
+	<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" onclick="filter(0)">List items</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" onclick="filter(1)">Furnitures</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filter(2)">Renovation Materials</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filter(3)">Appliances</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="filter(4)">Home Accessories</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="goToSelect()">Back</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer" style="background:cyan;background:-webkit-linear-gradient(cyan, rgb(0,162,232));background:-o-linear-gradient(cyan, rgb(0,162,232));background: -moz-linear-gradient(cyan, rgb(0,162,232));background: linear-gradient(cyan, rgb(0,162,232));">
+            <h1>One more step!</h1>
+            <p>Welcome to the checkout page! Please review the items you liked and decide which ones you want to buy!</p>
+            <!--<p><a class="btn btn-primary btn-large">Call to action!</a>-->
+            </p>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Selected Items</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center" id="features">
+
+			<!--
+            <div class="col-md-3 col-sm-6 hero-feature itemType1">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Item 1</h3>
+                        <p>Nice looking teddy bear</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature itemType4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Item 2</h3>
+                        <p>Nice looking teddy bear</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature itemType3">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Item 3</h3>
+                        <p>Nice looking teddy bear</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature itemType4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Item 4</h3>
+                        <p>Nice looking teddy bear</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+			-->
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Flekx</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+		<ul id="likedDisplay" style="display:none"></ul>
+		<ul id="dislikedDisplay" style="display:none"></ul>
 	</div>
 
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+	<script>
+		function filter(type) {
+			if (type == 0) {
+				var items = document.getElementsByClassName("hero-feature")
+				for (var i = 0; i < items.length; i ++) {
+					items[i].style.display="initial";
+				}
+			} else {
+				hideAll();
+				var className = "itemType" + type;
+				var items = document.getElementsByClassName(className)
+				for (var i = 0; i < items.length; i ++) {
+					items[i].style.display="initial";
+				}
+			}
+		}
+		function hideAll() {
+			var items = document.getElementsByClassName("hero-feature")
+			for (var i = 0; i < items.length; i ++) {
+				items[i].style.display="none";
+			}
+		}
+	</script>
     <!-- jQuery lib -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <!-- transform2d lib -->
