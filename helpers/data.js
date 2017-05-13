@@ -58,6 +58,36 @@ function updateItem (key, data, callback) {
   callback(itemsRef.update(updates));
 }
 
+// DELETE ITEM
+function deleteItem (key, callback) {
+  var itemRef = itemsRef.child(key);
+  itemRef.on('value', data => {
+    if (data.val() != null) {
+      var img_id = data.val().img_id;
+
+      new Promise((resolve, reject) => {
+        if(img_id) {
+          deleteImage(img_id, err => {
+            if(err) reject();
+            resolve();
+          });
+        } else resolve();
+      }).then(() => {
+        itemRef.remove();
+        callback(`${itemRef} removed.`);
+      }, () => {
+        itemRef.remove();
+        callback("Something happened");
+      });
+    } else callback('Key doesnt exist');
+  });
+}
+
+// RETRIEVE ALL ITEMS
+function getAll (callback) {
+  itemsRef.on('value', data => callback(data.val()));
+}
+
 
 
 //  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Storage  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,10 +113,31 @@ function getImage(id, callback) {
   Image.findById(id, (err, img) => callback(img.img));
 }
 
+// DELETE IMAGE
+function deleteImage (id, callback) {
+  Image.find({ _id: id }, (err, data) => {
+    if (err) {
+      console.error("Image not found.");
+      return callback(1);
+    }
+    if(data.length === 0) return callback(1);
+    data[0].remove((err, res) => {
+      if (err) {
+        console.error("Error deleting image.");
+        return callback(1);
+      }
+      console.log("Successfully deleted image.");
+      callback(0);
+    });
+  });
+}
+
 module.exports = {
   addItem,
   retrieveItem,
   updateItem,
   uploadImage,
-  getImage
+  getImage,
+  getAll,
+  deleteItem
 }
