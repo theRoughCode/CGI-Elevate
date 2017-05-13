@@ -15,12 +15,15 @@ routes.post('/submit', function(req, res){
     if(err) return res.send('Error reading form!');
     // if form has image
     // TODO: implement default image
-    if(files.pic.type.includes('image/')) {
-      data.uploadImage(files.pic, id => {
-        fields["img_id"] = id;
-        data.addItem(fields, id => res.redirect(`/retrieve/${id}`));
-      });
-    } else data.addItem(fields, e => res.redirect(`/retrieve/${id}`));
+    if(!files.pic.type.includes('image/'))
+      files.pic = {
+        path: "./public/images/default_pic.jpg",
+        type: "image/jpg"
+      };
+    data.uploadImage(files.pic, id => {
+      fields["img_id"] = id;
+      data.addItem(fields, id => res.redirect(`/retrieve/${id}`));
+    });
   });
 });
 
@@ -28,6 +31,7 @@ routes.post('/submit', function(req, res){
 routes.get('/retrieve/:id', function(req, res) {
   data.retrieveItem(req.params.id, field => {
     data.getImage(field.img_id, img => {
+      if(field.bid === 'no') field.duration = null;
       res.render('display', {
         name: field.name,
         desc: field.desc,
