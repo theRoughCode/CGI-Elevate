@@ -17,6 +17,51 @@
     <!-- Custom CSS -->
     <link href="css/heroic-features.css" rel="stylesheet">
 
+    <style>
+    a:hover {
+        text-decoration: none;
+    }
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
 </head>
 <body>
 	<div id="biggerWrap">
@@ -129,7 +174,7 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer" style="background:cyan;background:-webkit-linear-gradient(cyan, rgb(0,162,232));background:-o-linear-gradient(cyan, rgb(0,162,232));background: -moz-linear-gradient(cyan, rgb(0,162,232));background: linear-gradient(cyan, rgb(0,162,232));">
-            <h1>One more step!</h1>
+            <h1><button type="button" class="button"><span><a href="checkout/checkout.html" style="color: #FFFFFF">One more step!</a></span></button></h1>
             <p>Welcome to the checkout page! Please review the items you liked and decide which ones you want to buy!</p>
             <!--<p><a class="btn btn-primary btn-large">Call to action!</a>-->
             </p>
