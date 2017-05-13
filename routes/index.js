@@ -3,6 +3,7 @@ const data = require('../helpers/data');
 const formidable = require('formidable');
 const fs = require('fs');
 const async = require('async');
+const words = require('../helpers/words');
 
 routes.get('/', function(req, res){
   res.render('index');
@@ -106,6 +107,12 @@ routes.get('/test', function (req, res) {
     }
     console.log(item_arr);
     res.render('test', { items: item_arr });*/
+  });
+})
+
+routes.get('/predict/:img_id', function (req, res) {
+  data.getImage(req.params.img_id, img => {
+    words.predict(new Buffer(img.data).toString('base64'), result => res.send(result));
   });
 })
 

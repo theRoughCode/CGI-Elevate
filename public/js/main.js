@@ -4,6 +4,7 @@
 $("#tinderslide").jTinder({
 	// dislike callback
     onDislike: function (item) {
+			console.log(item);
 	    // set the status text
         $('#status').html('Dislike image ' + (item.index()+1));
 		$('#dislikedList').append(' ' + (item.index()+1));
