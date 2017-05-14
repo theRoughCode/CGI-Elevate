@@ -17,6 +17,12 @@
         <li>Duration: {{ duration }}</li>
       {{/if}}
       <li>Price: {{ price }}</li>
+      Tags:
+      <ul>
+        {{#each words}}
+          <li>{{ this.[0] }}: {{ this.[1] }}</li>
+        {{/each}}
+      </ul>
     </ul>
     <div class="img_div">
       <p>Image: </p>

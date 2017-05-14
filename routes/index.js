@@ -32,18 +32,22 @@ routes.post('/submit', function(req, res){
 // RETRIEVE ITEM
 routes.get('/retrieve/:id', function(req, res) {
   data.retrieveItem(req.params.id, field => {
-    console.log(field);
+    if (field == null) return res.render('display');
     data.getImage(field.img_id, img => {
-      if(field.bid === 'no') field.duration = null;
-      res.render('display', {
-        name: field.name,
-        desc: field.desc,
-        qty: field.qty,
-        cat: field.category,
-        bid: field.bid,
-        duration: field.duration,
-        price: field.price,
-        img: `data:${img.contentType};base64,${new Buffer(img.data).toString('base64')}`
+      words.predict(new Buffer(img.data).toString('base64'), result => {
+        //console.log(result);
+        if(field.bid === 'no') field.duration = null;
+        res.render('display', {
+          name: field.name,
+          desc: field.desc,
+          qty: field.qty,
+          cat: field.category,
+          bid: field.bid,
+          duration: field.duration,
+          price: field.price,
+          img: `data:${img.contentType};base64,${new Buffer(img.data).toString('base64')}`,
+          words: result
+        });
       });
     });
   });
@@ -101,7 +105,13 @@ routes.get('/test', function (req, res) {
 
 routes.get('/predict/:img_id', function (req, res) {
   data.getImage(req.params.img_id, img => {
-    words.predict(new Buffer(img.data).toString('base64'), result => res.send(result));
+    words.predict(new Buffer(img.data).toString('base64'), result =>{
+      res.render('predict', {
+        img: `data:${img.contentType};base64,${new Buffer(img.data).toString('base64')}`,
+        words: result
+      });
+      data.deleteImage(req.params.img_id, () => {});
+    });
   });
 })
 

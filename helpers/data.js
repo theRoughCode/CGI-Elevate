@@ -49,7 +49,6 @@ function addItem(data, callback) {
 function retrieveItem (key, callback) {
   var retrieveRef = itemsRef.child(key);
   retrieveRef.on('value', data => {
-    console.log(data.val());
     callback(data.val());
   });
 }

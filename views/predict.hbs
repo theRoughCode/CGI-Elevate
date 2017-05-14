@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Kllf</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>Welcome to Kllf!</h1>
+    <div class="img_div">
+      <p>Image: </p>
+      <img src="{{ img }}" />
+    </div>
+    <ul style="list-style:none;">
+      {{#each words}}
+        <li>{{ this.[0] }}: {{ this.[1] }}</li>
+      {{/each}}
+    </ul>
+    <button type="button" onclick="location.href='/';">Back to home</button>
+  </body>
+</html>
