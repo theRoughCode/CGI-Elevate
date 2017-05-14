@@ -17,17 +17,23 @@
         <li>Duration: {{ duration }}</li>
       {{/if}}
       <li>Price: {{ price }}</li>
-      Tags:
-      <ul>
-        {{#each words}}
-          <li>{{ this.[0] }}: {{ this.[1] }}</li>
-        {{/each}}
-      </ul>
     </ul>
     <div class="img_div">
       <p>Image: </p>
       <img src="{{ img }}" />
     </div>
+    <table>
+      <tr>
+        <th>Tags</th>
+        <th>Probability</th>
+      </tr>
+      {{#each words}}
+        <tr>
+          <td>{{ this.[0] }}</td>
+          <td>{{ this.[1] }}</td>
+        </tr>
+      {{/each}}
+    </table>
     <button type="button" onclick="location.href='/list';">Back to list</button>
   </body>
 </html>
